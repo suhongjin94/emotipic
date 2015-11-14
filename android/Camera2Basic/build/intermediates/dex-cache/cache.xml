@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\suhon_000\AppData\Local\Android\android-sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.0\support-annotations-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="990e7f98a7bad86a40b1f0bcfeb039023afd0839">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\support-annotations-23.0.0-4d0e7f11d71383f58f2928293eaaaa2f64b4aab7.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1ccbc26be2c465c622a48310e8092241b01abe80">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-1bebd990be36631604e1f7e7b011cd00f8708a25.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-a44d066fa27507be3f29e368c599d5409efdb2cc.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="bb0ac3f3ee2d71854501cc28e52cc84a20209b41">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-3139371d22eb199f40a441347e0f8154748df867.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8bd336eeae661e8311330284897ee07f8ebaa297">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-073511000747e19b399a4e35c70d9f9ad0397f7f.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8413c27b45b7fe61dca4a98159f65e2cee215f5a">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-7976f6d8a8e3152a147195456fd835a1c30d7a14.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\jars\libs\internal_impl-23.0.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5d4bccb885c8a89d066ecb6c4addb553a99a79a2">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\internal_impl-23.0.0-c7c71c8b849f7289cb07f2de05b83f4439813e65.jar" />
+    </item>
+
+</items>
