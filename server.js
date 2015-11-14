@@ -13,7 +13,9 @@ const API_KEY = "b94b9a266d7546ef91e64be1380960c9";
 app.engine('html', ejs.renderFile);
 app.set('views', __dirname + '/views');
 app.use(express.static('public'));
-app.use(multer({ dest: 'uploads/'}).single('image'));
+app.use(multer({
+	dest: 'uploads/'
+}).single('image'));
 
 app.use(bodyParser.json({
 	limit: '50mb'
@@ -29,9 +31,9 @@ app.get('/', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
-	var fileName = res.file.filename;
-
-	var url = req.protocol + '://' + req.get('host') + '/upload/' + fileName
+	var fileName = req.file.filename,
+		url = req.protocol + '://' + req.get('host') + '/upload/' + fileName;
+	console.log(fileName);
 	request({
 		headers: {
 			'Content-Type': 'application/json',
@@ -44,9 +46,13 @@ app.post('/upload', function(req, res) {
 		method: 'POST'
 	}, function(err, response, body) {
 		if (err) {
-			res.send({'response': 'error'});
+			res.send({
+				'response': 'error'
+			});
 		} else {
-			res.send({'response': body});
+			res.send({
+				'response': body
+			});
 		}
 	});
 });
