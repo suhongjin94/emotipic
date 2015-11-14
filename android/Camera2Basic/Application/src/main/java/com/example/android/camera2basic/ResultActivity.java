@@ -55,7 +55,6 @@ public class ResultActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_result);
         path = getIntent().getStringExtra("TESTING");
         origBmp = BitmapFactory.decodeFile(path);
-        origBmp = rotateImage(origBmp, 270);
 //        try {
 //            ExifInterface ei = new ExifInterface(path);
 //            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
@@ -155,13 +154,6 @@ public class ResultActivity extends Activity implements View.OnClickListener {
             }
         }
         return bitmap;
-    }
-
-
-    private Bitmap rotateImage(Bitmap source, float angle) {
-        Matrix matrix = new Matrix();
-        matrix.postRotate(angle);
-        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
     @Override

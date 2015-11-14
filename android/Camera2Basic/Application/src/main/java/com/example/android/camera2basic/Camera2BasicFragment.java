@@ -27,6 +27,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.graphics.Rect;
@@ -60,6 +62,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -838,6 +841,11 @@ public class Camera2BasicFragment extends Fragment
             buffer.get(bytes);
             FileOutputStream output = null;
             try {
+                Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                bitmap = rotateImage(bitmap, 270);
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                bytes = stream.toByteArray();
                 output = new FileOutputStream(mFile);
                 output.write(bytes);
             } catch (IOException e) {
@@ -852,6 +860,12 @@ public class Camera2BasicFragment extends Fragment
                     }
                 }
             }
+        }
+
+        private Bitmap rotateImage(Bitmap source, float angle) {
+            Matrix matrix = new Matrix();
+            matrix.postRotate(angle);
+            return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
         }
 
     }
