@@ -29,29 +29,27 @@ app.get('/', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
-	res.status(204).end();
+	var fileName = res.file.filename;
+
+	var url = req.protocol + '://' + req.get('host') + '/upload/' + fileName
+	request({
+		headers: {
+			'Content-Type': 'application/json',
+			'Ocp-Apim-Subscription-Key': API_KEY
+		},
+		uri: 'https://api.projectoxford.ai/emotion/v1.0/recognize',
+		json: {
+			url: url
+		},
+		method: 'POST'
+	}, function(err, response, body) {
+		if (err) {
+			res.send({'response': 'error'});
+		} else {
+			res.send({'response': body});
+		}
+	});
 });
-
-// app.post('/upload', function(req, res) {
-// 	console.log(req);
-// 	console.log(req.file.image.originalFilename);
-// 	console.log(req.file.image.path);
-
-// 	fs.readFile(req.files.image.path, function(err, data) {
-// 		var newPath = __dirname + '/uploads/' + req.files.image.originalFilename;
-// 		fs.writeFile(newPath, data, function(err) {
-// 			if (err) {
-// 				res.json({
-// 					'response': 'error'
-// 				});
-// 			} else {
-// 				res.json({
-// 					'response': 'success'
-// 				});
-// 			}
-// 		});
-// 	});
-// });
 
 app.post('/web-upload', function(req, res) {
 	// take the base64 string and save it as an image
