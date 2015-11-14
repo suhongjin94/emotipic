@@ -4,7 +4,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	request = require('request'),
 	uuid = require('uuid');
-	port = process.env.PORT || 3000,
+port = process.env.PORT || 3000,
 	app = express();
 
 const API_KEY = "b94b9a266d7546ef91e64be1380960c9";
@@ -27,6 +27,26 @@ app.get('/', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
+	console.log(req.file.image.originalFilename);
+	console.log(req.file.image.path);
+
+	fs.readFile(req.files.image.path, function(err, data) {
+		var newPath = __dirname + '/uploads/' + req.files.image.originalFilename;
+		fs.writeFile(newPath, data, function(err) {
+			if (err) {
+				res.json({
+					'response': 'error'
+				});
+			} else {
+				res.json({
+					'response': 'success'
+				});
+			}
+		});
+	});
+});
+
+app.post('/web-upload', function(req, res) {
 	// take the base64 string and save it as an image
 	var data = req.body.image.replace(/^data:image\/\w+;base64,/, ''),
 		buffer = new Buffer(data, 'base64'),
