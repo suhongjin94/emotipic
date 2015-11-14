@@ -4,8 +4,10 @@ var capture = false,
 
 		var canvas = document.getElementById('canvas');
 
+		console.log(canvas.toDataURL('image/jpeg', 1.0));
+
 		$.post('/upload', {
-			image: canvas.toDataURL()
+			image: canvas.toDataURL('image/jpeg', 1.0)
 		}, function(data) {
 			console.log(data);
 		}, 'json');
