@@ -14,12 +14,12 @@ app.set('views', __dirname + '/views');
 app.use(express.static('public'));
 
 app.use(bodyParser.json({
-	limit: '5mb'
+	limit: '50mb'
 }));
 
 app.use(bodyParser.urlencoded({
 	extended: false,
-	limit: '5mb'
+	limit: '50mb'
 }));
 
 app.get('/', function(req, res) {
@@ -31,6 +31,7 @@ app.post('/upload', function(req, res) {
 	var data = req.body.image.replace(/^data:image\/\w+;base64,/, ''),
 		buffer = new Buffer(data, 'base64'),
 		id = uuid.v1();
+
 	// save the image
 	fs.writeFile(__dirname + '/uploads/' + id, buffer);
 
