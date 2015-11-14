@@ -46,26 +46,27 @@ app.get('/upload/:file', function(req, res) {
 	res.end(img, 'binary');
 });
 
-// app.post('/emotipic', function(req, res) {
-// 	var url = req.protocol + '://' + req.get('host') + '/upload/image.png';
-// 	request({
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			'Ocp-Apim-Subscription-Key': API_KEY
-// 		},
-// 		uri: 'https://api.projectoxford.ai/emotion/v1.0/recognize',
-// 		json: {
-// 			url: url
-// 		},
-// 		method: 'POST'
-// 	}, function(err, response, body) {
-// 		if (err) {
-// 			console.log(err);
-// 		} else {
-// 			res.send(body);
-// 		}
-// 	});
-// });
+app.post('/emotipic', function(req, res) {
+	console.log(req.body.id);
+	var url = req.protocol + '://' + req.get('host') + '/upload/' + req.body.id;
+	request({
+		headers: {
+			'Content-Type': 'application/json',
+			'Ocp-Apim-Subscription-Key': API_KEY
+		},
+		uri: 'https://api.projectoxford.ai/emotion/v1.0/recognize',
+		json: {
+			url: url
+		},
+		method: 'POST'
+	}, function(err, response, body) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.send(body);
+		}
+	});
+});
 
 var server = app.listen(port, function() {
 	var host = server.address().address,
