@@ -2,6 +2,7 @@ var express = require('express'),
 	ejs = require('ejs'),
 	fs = require('fs'),
 	multer = require('multer'),
+	port = process.env.PORT || 3000,
 	app = express();
 
 const API_KEY = "b94b9a266d7546ef91e64be1380960c9";
@@ -30,7 +31,7 @@ app.get('/upload/:file', function(req, res) {
 	res.end(img, 'binary');
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(port, function() {
 	var host = server.address().address,
 		port = server.address().port;
 
