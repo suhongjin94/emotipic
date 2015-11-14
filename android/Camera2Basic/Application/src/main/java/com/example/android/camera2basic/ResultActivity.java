@@ -8,13 +8,22 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.messenger.MessengerUtils;
+import com.facebook.messenger.MessengerThreadParams;
+import com.facebook.messenger.ShareToMessengerParams;
 import com.microsoft.projectoxford.face.FaceServiceClient;
+
 import com.microsoft.projectoxford.face.*;
 
 import com.microsoft.projectoxford.face.contract.*;
@@ -22,13 +31,14 @@ import com.microsoft.projectoxford.face.contract.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * Created by suhon_000 on 11/14/2015.
  */
-public class ResultActivity extends Activity {
+public class ResultActivity extends Activity implements View.OnClickListener {
 
     private FaceServiceClient faceServiceClient =
             new FaceServiceClient("6c15189c7c5c4dc3bd57e7bc43b5c5d9");
@@ -36,11 +46,14 @@ public class ResultActivity extends Activity {
     private ImageView img;
     private Bitmap origBmp;
 
+    private String path;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_result);
-        String path = getIntent().getStringExtra("TESTING");
+        path = getIntent().getStringExtra("TESTING");
         origBmp = BitmapFactory.decodeFile(path);
         origBmp = rotateImage(origBmp, 270);
 //        try {
@@ -64,6 +77,9 @@ public class ResultActivity extends Activity {
         img.setImageBitmap(origBmp);
 
         detectAndFrame(origBmp);
+
+        Button messengerButton = (Button) findViewById(R.id.messenger_send_button);
+        messengerButton.setOnClickListener(this);
     }
 
     private void detectAndFrame(final Bitmap imageBitmap) {
@@ -148,5 +164,41 @@ public class ResultActivity extends Activity {
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Logs 'app deactivate' App Event.
+        AppEventsLogger.deactivateApp(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.messenger_send_button: {
+                String mimeType = "image/jpeg";
+
+                // contentUri points to the content being shared to Messenger
+                Uri contentUri = Uri.fromFile(new File(path));
+                ShareToMessengerParams shareToMessengerParams =
+                        ShareToMessengerParams.newBuilder(contentUri, mimeType)
+                                .build();
+
+// Sharing from an Activity
+                MessengerUtils.shareToMessenger(
+                        this,
+                        0,
+                        shareToMessengerParams);
+                break;
+            }
+        }
+    }
 }

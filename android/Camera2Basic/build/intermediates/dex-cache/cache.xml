@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.3.1\ecb6e1f8e4b0e84c4b886c2f14a1500caf309757\gson-2.3.1.jar"
+        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.6.0\jars\classes.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
-        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\gson-2.3.1-e2761fae1ac8c333ccbf86c1abcdc0d83faa738d.jar" />
+        sha1="1c1afa0ab2a8197a5da1b36c4167a9e479cb74d9">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-3e1ee3633599587871652cb4879bc6857e56e374.jar" />
     </item>
     <item
-        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.microsoft.projectoxford\face\0.4.91\jars\classes.jar"
+        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="664e0c64387289419bbf2d2938e633c35bcff691">
-        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-3360bd564cb58d1b2b823772abdea8c4f21f4ed2.jar" />
+        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-dd7872cd278ecd9f66ab7be4b8fe887c26566715.jar" />
     </item>
 
 </items>
