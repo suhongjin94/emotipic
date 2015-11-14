@@ -844,7 +844,7 @@ public class Camera2BasicFragment extends Fragment
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                 bitmap = rotateImage(bitmap, 270);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                 bytes = stream.toByteArray();
                 output = new FileOutputStream(mFile);
                 output.write(bytes);

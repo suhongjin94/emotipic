@@ -2,18 +2,18 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.6.0\jars\classes.jar"
+        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.ion\ion\2.1.6\cd55ef3ba6d8b62838b658ba2507b019dffb3a08\ion-2.1.6.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="1c1afa0ab2a8197a5da1b36c4167a9e479cb74d9">
-        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\classes-3e1ee3633599587871652cb4879bc6857e56e374.jar" />
+        sha1="cd55ef3ba6d8b62838b658ba2507b019dffb3a08">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\ion-2.1.6-2adfa2598ddbe93dd765885d41be3e115ec8d77d.jar" />
     </item>
     <item
-        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-android\1.2.0\6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd\bolts-android-1.2.0.jar"
+        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.async\androidasync\2.1.6\e3d5f6ab2003e31f2cf5ea61b4731a21e9517935\androidasync-2.1.6.jar"
         jumboMode="false"
         revision="23.0.1"
-        sha1="6ee2953ccf51ce72b6d548c30c4633b99eb4f9dd">
-        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\bolts-android-1.2.0-dd7872cd278ecd9f66ab7be4b8fe887c26566715.jar" />
+        sha1="e3d5f6ab2003e31f2cf5ea61b4731a21e9517935">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\androidasync-2.1.6-69f6737434581d08f063f3c0159a7dcb845609d3.jar" />
     </item>
 
 </items>
