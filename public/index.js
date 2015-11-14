@@ -1,6 +1,20 @@
 var capture = false,
 	captureClick = function() {
 		capture = true;
+
+		var canvas = document.getElementById('canvas');
+
+		$.post('/upload', {
+			image: canvas.toDataURL()
+		}, function(data) {
+			console.log(data);
+		}, 'json');
+	},
+	emotipicClick = function() {
+		$.post('/emotipic', {},
+			function(data) {
+				console.log(data);
+			}, 'json');
 	},
 	processVideo = function() {
 		var canvas = document.getElementById("canvas"),
@@ -37,7 +51,7 @@ var capture = false,
 
 					setInterval(function() {
 						processVideo();
-					}, 100);
+					}, 50);
 				},
 				function(err) {
 					console.log("Error: " + err);
