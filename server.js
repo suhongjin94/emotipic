@@ -3,8 +3,9 @@ var express = require('express'),
 	fs = require('fs'),
 	bodyParser = require('body-parser'),
 	request = require('request'),
-	uuid = require('uuid');
-port = process.env.PORT || 3000,
+	multer = require('multer'),
+	uuid = require('uuid'),
+	port = process.env.PORT || 3000,
 	app = express();
 
 const API_KEY = "b94b9a266d7546ef91e64be1380960c9";
@@ -12,6 +13,7 @@ const API_KEY = "b94b9a266d7546ef91e64be1380960c9";
 app.engine('html', ejs.renderFile);
 app.set('views', __dirname + '/views');
 app.use(express.static('public'));
+app.use(multer({ dest: 'uploads/'}).single('image'));
 
 app.use(bodyParser.json({
 	limit: '50mb'
@@ -27,24 +29,29 @@ app.get('/', function(req, res) {
 });
 
 app.post('/upload', function(req, res) {
-	console.log(req.file.image.originalFilename);
-	console.log(req.file.image.path);
-
-	fs.readFile(req.files.image.path, function(err, data) {
-		var newPath = __dirname + '/uploads/' + req.files.image.originalFilename;
-		fs.writeFile(newPath, data, function(err) {
-			if (err) {
-				res.json({
-					'response': 'error'
-				});
-			} else {
-				res.json({
-					'response': 'success'
-				});
-			}
-		});
-	});
+	res.status(204).end();
 });
+
+// app.post('/upload', function(req, res) {
+// 	console.log(req);
+// 	console.log(req.file.image.originalFilename);
+// 	console.log(req.file.image.path);
+
+// 	fs.readFile(req.files.image.path, function(err, data) {
+// 		var newPath = __dirname + '/uploads/' + req.files.image.originalFilename;
+// 		fs.writeFile(newPath, data, function(err) {
+// 			if (err) {
+// 				res.json({
+// 					'response': 'error'
+// 				});
+// 			} else {
+// 				res.json({
+// 					'response': 'success'
+// 				});
+// 			}
+// 		});
+// 	});
+// });
 
 app.post('/web-upload', function(req, res) {
 	// take the base64 string and save it as an image
