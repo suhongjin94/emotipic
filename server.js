@@ -6,6 +6,7 @@ var express = require('express'),
 	multer = require('multer'),
 	uuid = require('uuid'),
 	port = process.env.PORT || 3000,
+	pythonShell = require('python-shell'),
 	app = express();
 
 const FACE_API_KEY = "3014f0d696a144d4bd875661e36057c3";
@@ -31,15 +32,7 @@ app.get('/', function(req, res) {
 	res.render('index.html');
 });
 
-function emotion() {
-
-}
-
-function face() {
-
-}
-
-app.post('/upload', function(req, res) {
+app.post('/upload', function(req, response) {
 	var fileName = req.file.filename,
 		url = req.protocol + '://' + req.get('host') + '/upload/' + fileName;
 
@@ -53,9 +46,9 @@ app.post('/upload', function(req, res) {
 			url: url
 		},
 		method: 'POST'
-	}, function(err, response, faceBody) {
+	}, function(err, res, faceBody) {
 		if (err) {
-			res.send({
+			response.send({
 				'response': 'error'
 			});
 		} else {
@@ -69,13 +62,31 @@ app.post('/upload', function(req, res) {
 					url: url
 				},
 				method: 'POST'
-			}, function(err, response, emotionBody) {
+			}, function(err, res, emotionBody) {
 				if (err) {
-					res.send({
+					response.send({
 						'response': 'error'
 					});
 				} else {
-					res.send({
+					pythonShell.run('sample.py', {
+						args: [JSON.stringify({
+								'response': {
+									face: faceBody,
+									emotion: emotionBody
+								}
+							}),
+							'input.png',
+							'output.png'
+						]
+					}, function(err, result) {
+						if (err) {
+							console.log(err);
+						}
+
+						console.log(result);
+					});
+
+					response.send({
 						'response': {
 							face: faceBody,
 							emotion: emotionBody
@@ -85,8 +96,6 @@ app.post('/upload', function(req, res) {
 			});
 		}
 	});
-
-
 });
 
 app.post('/web-upload', function(req, res) {
