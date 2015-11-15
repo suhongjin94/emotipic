@@ -13,5 +13,5 @@ if __name__ == '__main__':
 	print responseJson
 
 	f = open('myfile','w')
-	f.write('hi there\n')
+	f.write(data)
 	f.close()
