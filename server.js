@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 	res.render('index.html');
 });
 
-app.post('/upload', function(req, res) {
+app.post('/upload', function(req, response) {
 	var fileName = req.file.filename,
 		url = req.protocol + '://' + req.get('host') + '/upload/' + fileName;
 
@@ -46,9 +46,9 @@ app.post('/upload', function(req, res) {
 			url: url
 		},
 		method: 'POST'
-	}, function(err, response, faceBody) {
+	}, function(err, res, faceBody) {
 		if (err) {
-			res.send({
+			response.send({
 				'response': 'error'
 			});
 		} else {
@@ -62,13 +62,31 @@ app.post('/upload', function(req, res) {
 					url: url
 				},
 				method: 'POST'
-			}, function(err, response, emotionBody) {
+			}, function(err, res, emotionBody) {
 				if (err) {
-					res.send({
+					response.send({
 						'response': 'error'
 					});
 				} else {
-					res.send({
+					pythonShell.run('sample.py', {
+						args: [JSON.stringify({
+								'response': {
+									face: faceBody,
+									emotion: emotionBody
+								}
+							}),
+							'input.png',
+							'output.png'
+						]
+					}, function(err, result) {
+						if (err) {
+							console.log(err);
+						}
+
+						console.log(result);
+					});
+
+					response.send({
 						'response': {
 							face: faceBody,
 							emotion: emotionBody
@@ -78,8 +96,6 @@ app.post('/upload', function(req, res) {
 			});
 		}
 	});
-
-
 });
 
 app.post('/web-upload', function(req, res) {
