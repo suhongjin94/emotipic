@@ -75,23 +75,24 @@ app.post('/upload', function(req, response) {
 									emotion: emotionBody
 								}
 							}),
-							'input.png',
-							'output.png'
+							'upload/' + fileName,
+							'output/' + fileName
 						]
 					}, function(err, result) {
 						if (err) {
 							console.log(err);
 						}
 
-						console.log(result);
+						// console.log(result);
 
-						var img = fs.readFileSync('uploads/' + fileName);
+						// var img = fs.readFileSync('uploads/' + fileName);
 
-						response.writeHead(200, {
-							'Content-Type': 'image/jpeg'
-						});
+						// response.writeHead(200, {
+						// 	'Content-Type': 'image/jpeg'
+						// });
 
-						response.end(img, 'binary');
+						// response.end(img, 'binary')
+						response.end(url);
 					});
 				}
 			});
@@ -112,6 +113,15 @@ app.post('/web-upload', function(req, res) {
 });
 
 app.get('/upload/:file', function(req, res) {
+	file = req.params.file;
+	var img = fs.readFileSync(__dirname + "/uploads/" + file);
+	res.writeHead(200, {
+		'Content-Type': 'image/jpg'
+	});
+	res.end(img, 'binary');
+});
+
+app.get('/output/:file', function(req, res) {
 	file = req.params.file;
 	var img = fs.readFileSync(__dirname + "/uploads/" + file);
 	res.writeHead(200, {
