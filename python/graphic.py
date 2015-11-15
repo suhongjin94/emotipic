@@ -34,7 +34,7 @@ def get_json_data(json_path):
 
 def getEmotion(json_data):
 	emotionData = json_data['response']['emotion'][0]['scores']
-	print emotionData
+	# print emotionData
 	minVal = 0
 	emote='neutral'
 	count = 0
@@ -52,6 +52,7 @@ def getFaceInfo(json_data):
 	for key in faceRectangle.keys():
 		faceInfo.add_box_info(key, faceRectangle[key])
 	faceLandmarks = faceData['faceLandmarks']
+	# print faceLandmarks
 	#eyes
 	pupilRight_dict = {}
 	pupilRight_dict['y'] = faceLandmarks['pupilRight']['y']
@@ -61,6 +62,22 @@ def getFaceInfo(json_data):
 	pupilLeft_dict['y'] = faceLandmarks['pupilLeft']['y']
 	pupilLeft_dict['x'] = faceLandmarks['pupilLeft']['x']
 	faceInfo.add_eye_info('pupilLeft', pupilLeft_dict)
+	eyeRightOuter_dict = {}
+	eyeRightOuter_dict['y'] = faceLandmarks['eyeRightOuter']['y']
+	eyeRightOuter_dict['x'] = faceLandmarks['eyeRightOuter']['x']
+	faceInfo.add_eye_info('eyeRightOuter', eyeRightOuter_dict)
+	eyeRightInner_dict = {}
+	eyeRightInner_dict['y'] = faceLandmarks['eyeRightInner']['y']
+	eyeRightInner_dict['x'] = faceLandmarks['eyeRightInner']['x']
+	faceInfo.add_eye_info('eyeRightInner', eyeRightInner_dict)
+	eyeLeftOuter_dict = {}
+	eyeLeftOuter_dict['y'] = faceLandmarks['eyeLeftOuter']['y']
+	eyeLeftOuter_dict['x'] = faceLandmarks['eyeLeftOuter']['x']
+	faceInfo.add_eye_info('eyeLeftOuter', eyeLeftOuter_dict)
+	eyeLeftInner_dict = {}
+	eyeLeftInner_dict['y'] = faceLandmarks['eyeLeftInner']['y']
+	eyeLeftInner_dict['x'] = faceLandmarks['eyeLeftInner']['x']
+	faceInfo.add_eye_info('eyeLeftInner', eyeLeftInner_dict)
 	#mouth
 	# print faceLandmarks['mouthRight']
 	mouthRight_dict = {}
@@ -154,24 +171,32 @@ def drawNeutral(image_array):
 	return image_array
 
 def drawSadness(background, secondImage, faceInfo):
-	img_w, img_h = secondImage.size
 	bg_w, bg_h = background.size
-	print faceInfo.eye_info['pupilRight']['x']
-	rightx = int(faceInfo.eye_info['pupilRight']['x'])
+	# print faceInfo.eye_info['pupilRight']['x']
 	righty = int(faceInfo.eye_info['pupilRight']['y'])
-	offset = (rightx, righty)
-	offset = ((bg_w - img_w) / 2, (bg_h - img_h) / 2)
+	rightOuter = int(faceInfo.eye_info['eyeRightOuter']['x'])
+	rightInner = int(faceInfo.eye_info['eyeRightInner']['x'])
+	leftOuter = int(faceInfo.eye_info['eyeLeftOuter']['x'])
+	leftInner = int(faceInfo.eye_info['eyeLeftInner']['x'])
+	lefty = int(faceInfo.eye_info['pupilLeft']['y'])
+	secondImage = secondImage.resize((rightOuter - rightInner, bg_h - righty), Image.ANTIALIAS)
+	img_w, img_h = secondImage.size
+	offset = (rightInner, righty, rightOuter, bg_h)
+	offset2 = (leftOuter, lefty, leftInner, bg_h)
+	# offset = ((bg_w - img_w) / 2, (bg_h - img_h) / 2)
 	background.paste(secondImage, offset)
+	secondImage = secondImage.resize((leftInner - leftOuter, bg_h - lefty), Image.ANTIALIAS)
+	background.paste(secondImage, offset2)
 	background.save('out.png')
 	# write to stdout
 
 def drawSurprise(image_array):
 	return image_array
 
-image = build_image('test.jpg')
+image = build_image('upload.jpg')
 secondImage = build_image('circle_blue.png')
 
 data = get_json_data('sample.json')
-# getEmotion(data)
+getEmotion(data)
 faceInfo = getFaceInfo(data)
 drawSadness(image, secondImage, faceInfo)
