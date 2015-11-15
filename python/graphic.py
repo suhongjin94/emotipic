@@ -1,4 +1,4 @@
-from PIL import Image, ImageDraw
+from PIL import Image
 import json
 import sys
 
@@ -56,6 +56,7 @@ def getFaceInfo(json_data):
 	pupilRight_dict = {}
 	pupilRight_dict['y'] = faceLandmarks['pupilRight']['y']
 	pupilRight_dict['x'] = faceLandmarks['pupilRight']['x']
+	faceInfo.add_eye_info('pupilRight', pupilRight_dict)
 	pupilLeft_dict = {}
 	pupilLeft_dict['y'] = faceLandmarks['pupilLeft']['y']
 	pupilLeft_dict['x'] = faceLandmarks['pupilLeft']['x']
@@ -116,6 +117,7 @@ def getFaceInfo(json_data):
 	eyebrowRightInner_dict['y'] = faceLandmarks['eyebrowRightInner']['y']
 	eyebrowRightInner_dict['x'] = faceLandmarks['eyebrowRightInner']['x']
 	faceInfo.add_eyebrow_info('eyebrowRightInner', eyebrowRightInner_dict)
+	return faceInfo
 
 
 	
@@ -151,9 +153,13 @@ def drawHappiness(image_array):
 def drawNeutral(image_array):
 	return image_array
 
-def drawSadness(background, infoJson, secondImage):
+def drawSadness(background, secondImage, faceInfo):
 	img_w, img_h = secondImage.size
 	bg_w, bg_h = background.size
+	print faceInfo.eye_info['pupilRight']['x']
+	rightx = int(faceInfo.eye_info['pupilRight']['x'])
+	righty = int(faceInfo.eye_info['pupilRight']['y'])
+	offset = (rightx, righty)
 	offset = ((bg_w - img_w) / 2, (bg_h - img_h) / 2)
 	background.paste(secondImage, offset)
 	background.save('out.png')
@@ -162,10 +168,10 @@ def drawSadness(background, infoJson, secondImage):
 def drawSurprise(image_array):
 	return image_array
 
-# image = build_image('test.jpg')
-# secondImage = build_image('circle_blue.png')
-# drawSadness(image, infoJson, secondImage)
+image = build_image('test.jpg')
+secondImage = build_image('circle_blue.png')
 
 data = get_json_data('sample.json')
 # getEmotion(data)
-getFaceInfo(data)
+faceInfo = getFaceInfo(data)
+drawSadness(image, secondImage, faceInfo)
