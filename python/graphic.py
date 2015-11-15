@@ -36,12 +36,13 @@ def getEmotion(json_data):
 	emotionData = json_data['response']['emotion'][0]['scores']
 	# print emotionData
 	minVal = 0
-	emote='neutral'
+	emote='happiness'
 	count = 0
 	for key in emotionData.keys():
-		if emotionData[key] > minVal:
-			minVal = emotionData[key]
-			emote = key
+		if (key != 'neutral'):
+			if emotionData[key] > minVal:
+				minVal = emotionData[key]
+				emote = key
 	print emote
 	return emote
 
@@ -290,8 +291,14 @@ if __name__ == '__main__':
 	rose = build_image('python/things/rose.png')
 
 	# data = get_json_data('sample.json')
-	getEmotion(data)
+	emotion = getEmotion(data)
 	faceInfo = getFaceInfo(data)
+	if emotion == 'happiness':
+		drawHappiness(image, star1, rose, faceInfo, outputImagePath)
+	elif emotion == 'anger':
+		drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)
+	elif emotion == 'sadness':
+		drawSadness(image, leftWater, rightWater, faceInfo)
 	# drawSadness(image, leftWater, rightWater, faceInfo)
 	# drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)
-	drawHappiness(image, star1, rose, faceInfo, outputImagePath)
+	
