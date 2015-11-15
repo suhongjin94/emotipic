@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:18:1-53:12
+ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:18:1-54:12
 	xmlns:android
 		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:18:11-69
 	package
@@ -35,7 +35,7 @@ ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\App
 	android:name
 		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:25:19-67
 application
-ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:27:5-48:19
+ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:27:5-49:19
 MERGED from [com.android.support:support-v4:23.0.0] C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v13:23.0.0] C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v13\23.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.0.0] C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\AndroidManifest.xml:22:5-20
@@ -105,14 +105,20 @@ ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\App
 		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:47:20-65
 	android:value
 		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:47:66-105
-provider#com.facebook.FacebookContentProvider
-ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:50:5-52:35
-	android:exported
-		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:52:9-32
-	android:authorities
-		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:50:15-93
+meta-data#io.fabric.ApiKey
+ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:48:9-95
 	android:name
-		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:51:9-60
+		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:48:20-51
+	android:value
+		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:48:52-93
+provider#com.facebook.FacebookContentProvider
+ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:51:5-53:35
+	android:exported
+		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:53:9-32
+	android:authorities
+		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:51:15-93
+	android:name
+		ADDED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml:52:9-60
 uses-sdk
 INJECTED from C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:support-v4:23.0.0] C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.0\AndroidManifest.xml:20:5-43

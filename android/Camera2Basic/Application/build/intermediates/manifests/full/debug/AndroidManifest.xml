@@ -62,6 +62,9 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="bbIvH1VEjlERSanfcw8ufSGTc" />
 
         <activity
             android:name="com.twitter.sdk.android.core.identity.OAuthActivity"

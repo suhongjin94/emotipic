@@ -41,6 +41,7 @@ import com.twitter.sdk.android.tweetcomposer.TweetComposer;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -53,6 +54,7 @@ import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 import io.fabric.sdk.android.Fabric;
 
@@ -82,7 +84,7 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.activity_result);
         path = getIntent().getStringExtra("TESTING");
-        origBmp = BitmapFactory.decodeFile(path);
+//        origBmp = BitmapFactory.decodeFile(path);
 //        try {
 //            ExifInterface ei = new ExifInterface(path);
 //            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
@@ -101,19 +103,19 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 //        }
 
         img = (ImageView) findViewById(R.id.result_image);
-        img.setImageBitmap(origBmp);
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        origBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-        byte[] byteArray = byteArrayOutputStream.toByteArray();
-        Log.v("TAG", "bytes: " + Integer.toString(byteArray.length));
-        String encoded = Base64.encodeToString(byteArray, Base64.NO_WRAP);
-        Log.d("TAG", Integer.toString(encoded.length()));
-        String url = "http://emotipic.azurewebsites.net/upload";
-
-        byte[] decodedString = Base64.decode(encoded, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        img.setImageBitmap(decodedByte);
+//        img.setImageBitmap(origBmp);
+//
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        origBmp.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+//        byte[] byteArray = byteArrayOutputStream.toByteArray();
+//        Log.v("TAG", "bytes: " + Integer.toString(byteArray.length));
+//        String encoded = Base64.encodeToString(byteArray, Base64.NO_WRAP);
+//        Log.d("TAG", Integer.toString(encoded.length()));
+//        String url = "http://emotipic.azurewebsites.net/upload";
+//
+//        byte[] decodedString = Base64.decode(encoded, Base64.DEFAULT);
+//        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//        img.setImageBitmap(decodedByte);
 //        new DownloadTask().execute(url, path);
 //        detectAndFrame(origBmp);
 
@@ -132,12 +134,13 @@ public class ResultActivity extends Activity implements View.OnClickListener {
                 .setCallback(new FutureCallback<Response<String>>() {
                     @Override
                     public void onCompleted(Exception e, Response<String> result) {
-                        try {
-                            JSONObject jobj = new JSONObject(result.getResult());
-                            Toast.makeText(getApplicationContext(), jobj.getString("response"), Toast.LENGTH_SHORT).show();
-
-                        } catch (JSONException e1) {
-                            Log.e("TAG", e1.toString());
+                        if (e == null) {
+//                            Toast.makeText(getApplicationContext(), result.getResult(), Toast.LENGTH_SHORT).show();
+                            Log.d("TAG", result.getResult());
+                            new DownloadImageTask().execute(result.getResult());
+                        }
+                        else {
+                            Log.e("TAG", e.toString());
                         }
 
                     }
@@ -264,6 +267,40 @@ public class ResultActivity extends Activity implements View.OnClickListener {
             }
         }
     }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(String... strings) {
+            return downloadImage(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Bitmap result) {
+            img.setImageBitmap(result);              // how do I pass a reference to mChart here ?
+        }
+
+        private Bitmap downloadImage(String url) {
+            //---------------------------------------------------
+            Bitmap bm = null;
+            try {
+                URL aURL = new URL(url);
+                URLConnection conn = aURL.openConnection();
+                conn.connect();
+                InputStream is = conn.getInputStream();
+                BufferedInputStream bis = new BufferedInputStream(is);
+                bm = BitmapFactory.decodeStream(bis);
+                bis.close();
+                is.close();
+            } catch (IOException e) {
+                Log.e("Hub","Error getting the image from server : " + e.getMessage().toString());
+            }
+            return bm;
+            //---------------------------------------------------
+        }
+
+    }
+
 
     private class DownloadTask extends AsyncTask<String, Void, String> {
         @Override
