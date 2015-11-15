@@ -76,7 +76,7 @@ app.post('/upload', function(req, response) {
 								}
 							}),
 							'uploads/' + fileName,
-							'outputs/' + fileName
+							'outputs/' + fileName + '.png'
 						]
 					}, function(err, result) {
 						if (err) {
@@ -92,7 +92,7 @@ app.post('/upload', function(req, response) {
 						// });
 
 						// response.end(img, 'binary')
-						response.end(req.protocol + '://' + req.get('host') + '/outputs/' + fileName);
+						response.end(req.protocol + '://' + req.get('host') + '/output/' + fileName + '.png');
 					});
 				}
 			});
@@ -125,7 +125,7 @@ app.get('/output/:file', function(req, res) {
 	file = req.params.file;
 	var img = fs.readFileSync(__dirname + "/outputs/" + file);
 	res.writeHead(200, {
-		'Content-Type': 'image/jpg'
+		'Content-Type': 'image/png'
 	});
 	res.end(img, 'binary');
 });
