@@ -11,3 +11,7 @@ if __name__ == '__main__':
 	responseJson = json.loads(data)
 
 	print responseJson
+
+	f = open('myfile','w')
+	f.write('hi there\n')
+	f.close()
