@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.ion\ion\2.1.6\cd55ef3ba6d8b62838b658ba2507b019dffb3a08\ion-2.1.6.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="cd55ef3ba6d8b62838b658ba2507b019dffb3a08">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\ion-2.1.6-2adfa2598ddbe93dd765885d41be3e115ec8d77d.jar" />
+    </item>
+    <item
+        jar="C:\Users\suhon_000\.gradle\caches\modules-2\files-2.1\com.koushikdutta.async\androidasync\2.1.6\e3d5f6ab2003e31f2cf5ea61b4731a21e9517935\androidasync-2.1.6.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e3d5f6ab2003e31f2cf5ea61b4731a21e9517935">
+        <dex dex="C:\Users\suhon_000\Documents\GitHub\emotipic\android\Camera2Basic\Application\build\intermediates\pre-dexed\debug\androidasync-2.1.6-69f6737434581d08f063f3c0159a7dcb845609d3.jar" />
+    </item>
+
+</items>
