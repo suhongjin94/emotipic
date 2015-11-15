@@ -84,13 +84,14 @@ app.post('/upload', function(req, response) {
 						}
 
 						console.log(result);
-					});
 
-					response.send({
-						'response': {
-							face: faceBody,
-							emotion: emotionBody
-						}
+						var img = fs.readFileSync('uploads/' + fileName);
+
+						response.writeHead(200, {
+							'Content-Type': 'image/jpeg'
+						});
+
+						response.end(img, 'binary');
 					});
 				}
 			});
