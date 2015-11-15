@@ -195,8 +195,48 @@ def drawDisgust(image_array):
 def drawFear(image_array):
 	return image_array
 
-def drawHappiness(image_array):
-	return image_array
+def drawHappiness(background, star1, rose, faceInfo, outfile):
+	bg_w, bg_h = background.size
+
+	st1orig_w, st1orig_h = star1.size
+	rightOuter = int(faceInfo.eye_info['eyeRightOuter']['x'])
+	rightInner = int(faceInfo.eye_info['eyeRightInner']['x'])
+	righty = int(faceInfo.eye_info['pupilRight']['y'])
+	rightRatio = st1orig_w / (rightOuter - rightInner)
+	star1 = star1.resize(((rightOuter - rightInner) * 2, (st1orig_h / rightRatio * 2)), Image.ANTIALIAS)
+	st1_w, st1_h = star1.size
+	averageRight = (rightOuter + rightInner) / 2
+	st1_offset = (averageRight - st1_w / 2, righty - st1_h / 2, averageRight + st1_w - st1_w / 2, righty + st1_h - st1_h/2)
+	background.paste(star1, st1_offset, mask = star1)
+
+	leftOuter = int(faceInfo.eye_info['eyeLeftOuter']['x'])
+	leftInner = int(faceInfo.eye_info['eyeLeftInner']['x'])
+	lefty = int(faceInfo.eye_info['pupilLeft']['y'])
+	leftRatio = st1orig_w / (leftInner - leftOuter)
+	star1 = star1.resize(((leftInner - leftOuter) * 2, (st1orig_h / leftRatio * 2)), Image.ANTIALIAS)
+	st1_w, st1_h = star1.size
+	averageLeft = (leftOuter + leftInner) / 2
+	st1_offset = (averageLeft - st1_w / 2, lefty - st1_h / 2, averageLeft + st1_w - st1_w / 2, lefty + st1_h - st1_h/2)
+	background.paste(star1, st1_offset, mask = star1)
+
+	rectangleX = int(faceInfo.box_info['width'])
+	rectangleY = int(faceInfo.box_info['height'])
+	rose_w, rose_h = rose.size
+	averageRectLen = (rectangleX + rectangleY) / 4
+	rectRatio = rose_w / (averageRectLen / 2)
+	rose = rose.resize((averageRectLen / 2, rose_h / rectRatio), Image.ANTIALIAS)
+	rose_w, rose_h = rose.size
+	mouthLeftX = int(faceInfo.mouth_info['mouthLeft']['x'])
+	mouthLeftY = int(faceInfo.mouth_info['mouthLeft']['y'])
+	mouthRightX = int(faceInfo.mouth_info['mouthRight']['x'])
+	mouthRightY = int(faceInfo.mouth_info['mouthRight']['y'])
+	rose_offset = (mouthLeftX - rose_w, mouthLeftY - rose_h)
+	rose_offset2 = (mouthRightX, mouthRightY - rose_h)
+	background.paste(rose, rose_offset, mask = rose)
+	background.paste(rose, rose_offset2, mask = rose)
+
+
+	background.save(outfile)
 
 def drawNeutral(image_array):
 	return image_array
@@ -246,9 +286,12 @@ if __name__ == '__main__':
 	angerSymbol = build_image('python/things/anger-symbol.png')
 	leftEyebrow = build_image('python/things/left-eye-brow.png')
 	rightEyebrow = build_image('python/things/right-eye-brow.png')
+	star1 = build_image('python/things/star-1.png')
+	rose = build_image('python/things/rose.png')
 
 	# data = get_json_data('sample.json')
 	getEmotion(data)
 	faceInfo = getFaceInfo(data)
 	# drawSadness(image, leftWater, rightWater, faceInfo)
-	drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)
+	# drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)
+	drawHappiness(image, star1, rose, faceInfo, outputImagePath)
