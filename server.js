@@ -6,6 +6,7 @@ var express = require('express'),
 	multer = require('multer'),
 	uuid = require('uuid'),
 	port = process.env.PORT || 3000,
+	pythonShell = require('python-shell'),
 	app = express();
 
 const FACE_API_KEY = "3014f0d696a144d4bd875661e36057c3";
@@ -30,14 +31,6 @@ app.use(bodyParser.urlencoded({
 app.get('/', function(req, res) {
 	res.render('index.html');
 });
-
-function emotion() {
-
-}
-
-function face() {
-
-}
 
 app.post('/upload', function(req, res) {
 	var fileName = req.file.filename,
