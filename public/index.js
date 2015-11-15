@@ -6,7 +6,7 @@ var capture = false,
 
 		console.log(canvas.toDataURL('image/jpeg', 1.0));
 
-		$.post('/upload', {
+		$.post('/web-upload', {
 			image: canvas.toDataURL('image/jpeg', 1.0)
 		}, function(data) {
 			console.log(data);
@@ -24,9 +24,12 @@ var capture = false,
 			context = canvas.getContext('2d');
 
 		if (!capture) {
+			context.canvas.width = window.innerWidth;
+			context.canvas.height = window.innerHeight;
+
 			context.save();
 			context.scale(-1, 1);
-			context.drawImage(video, -320, 0, 320, 240);
+			context.drawImage(video, -context.canvas.width * 0.85, 0, context.canvas.width * 0.7, Math.floor(context.canvas.width * 768/1024 * 0.7));
 			context.restore();
 		}
 	},
@@ -40,8 +43,8 @@ var capture = false,
 			navigator.getUserMedia({
 					video: {
 						mandatory: {
-							maxWidth: 640,
-							maxHeight: 480
+							maxWidth: 3000,
+							maxHeight: 3000
 						}
 					},
 					audio: false
