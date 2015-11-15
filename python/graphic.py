@@ -298,7 +298,10 @@ if __name__ == '__main__':
 	elif emotion == 'anger':
 		drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)
 	elif emotion == 'sadness':
-		drawSadness(image, leftWater, rightWater, faceInfo)
+		drawSadness(image, leftWater, rightWater, faceInfo, outputImagePath)
+	else:
+		image = image.convert('L')
+		image.save(outputImagePath)
 	# drawSadness(image, leftWater, rightWater, faceInfo)
 	# drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)
 	
