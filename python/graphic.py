@@ -152,8 +152,38 @@ def build_image_array(image_path):
 def build_image(image_path):
 	return Image.open(image_path)
 
-def drawAnger(image_array):
-	return image_array
+def drawAnger(background, angerSymbol, leftEyebrow, rightEyebrow, faceInfo):
+	bg_w, bg_h = background.size
+	leftOuterX = int(faceInfo.eyebrow_info['eyebrowLeftOuter']['x'])
+	leftOuterY = int(faceInfo.eyebrow_info['eyebrowLeftOuter']['y'])
+
+	rectangleX = int(faceInfo.box_info['width'])
+	rectangleY = int(faceInfo.box_info['height'])
+	averageRectLen = (rectangleX + rectangleY) / 4
+	angerSymbol = angerSymbol.resize((averageRectLen / 2, averageRectLen / 2), Image.ANTIALIAS)
+
+	
+	leftInnerX = int(faceInfo.eyebrow_info['eyebrowLeftInner']['x'])
+	leftInnerY = int(faceInfo.eyebrow_info['eyebrowLeftInner']['y'])
+	leftEyebrow = leftEyebrow.resize((averageRectLen, averageRectLen), Image.ANTIALIAS)
+
+	rightInnerX = int(faceInfo.eyebrow_info['eyebrowRightInner']['x'])
+	rightInnerY = int(faceInfo.eyebrow_info['eyebrowRightInner']['y'])
+	rightEyebrow = rightEyebrow.resize((averageRectLen, averageRectLen), Image.ANTIALIAS)
+
+	sy_w, sy_h = angerSymbol.size
+	offset = (leftOuterX - sy_w / 2, leftOuterY - sy_h / 2)
+	
+
+	leftBrow_w, leftBrow_h = leftEyebrow.size
+	leftEyebrowOffset = (leftInnerX - leftBrow_w, int(leftInnerY - leftBrow_h / 1.5))
+	background.paste(leftEyebrow, leftEyebrowOffset, mask = leftEyebrow)
+
+	rightBrow_w, rightBrow_h = rightEyebrow.size
+	rightEyebrowOffset = (rightInnerX - rightBrow_w / 4, int(rightInnerY - rightBrow_h / 1.5))
+	background.paste(rightEyebrow, rightEyebrowOffset, mask = rightEyebrow)
+	background.paste(angerSymbol, offset, mask = angerSymbol)
+	background.save('out.png')
 
 def drawContempt(image_array):
 	return image_array
@@ -170,23 +200,29 @@ def drawHappiness(image_array):
 def drawNeutral(image_array):
 	return image_array
 
-def drawSadness(background, secondImage, faceInfo):
+def drawSadness(background, leftWater, rightWater, faceInfo):
 	bg_w, bg_h = background.size
+	leftW_w, leftW_h = leftWater.size
+	rightW_w, rightW_h = rightWater.size
 	# print faceInfo.eye_info['pupilRight']['x']
 	righty = int(faceInfo.eye_info['pupilRight']['y'])
 	rightOuter = int(faceInfo.eye_info['eyeRightOuter']['x'])
 	rightInner = int(faceInfo.eye_info['eyeRightInner']['x'])
+	rightRatio = rightW_w / (rightOuter - rightInner)
 	leftOuter = int(faceInfo.eye_info['eyeLeftOuter']['x'])
 	leftInner = int(faceInfo.eye_info['eyeLeftInner']['x'])
+	leftRatio = leftW_w / (leftInner - leftOuter)
 	lefty = int(faceInfo.eye_info['pupilLeft']['y'])
-	secondImage = secondImage.resize((rightOuter - rightInner, bg_h - righty), Image.ANTIALIAS)
-	img_w, img_h = secondImage.size
-	offset = (rightInner, righty, rightOuter, bg_h)
-	offset2 = (leftOuter, lefty, leftInner, bg_h)
+	rightWater = rightWater.resize((rightOuter - rightInner, rightW_h / rightRatio), Image.ANTIALIAS)
+	rightW_w, rightW_h = rightWater.size
+	offset = (rightInner, righty, rightOuter, righty + rightW_h)
+
+	leftWater = leftWater.resize((leftInner - leftOuter, leftW_h / leftRatio), Image.ANTIALIAS)
+	leftW_w, leftW_h = leftWater.size
+	offset2 = (leftOuter, lefty, leftInner, lefty + leftW_h)
 	# offset = ((bg_w - img_w) / 2, (bg_h - img_h) / 2)
-	background.paste(secondImage, offset)
-	secondImage = secondImage.resize((leftInner - leftOuter, bg_h - lefty), Image.ANTIALIAS)
-	background.paste(secondImage, offset2)
+	background.paste(rightWater, offset, mask = rightWater)
+	background.paste(leftWater, offset2, mask = leftWater)
 	background.save('out.png')
 	# write to stdout
 
@@ -194,9 +230,14 @@ def drawSurprise(image_array):
 	return image_array
 
 image = build_image('upload.jpg')
-secondImage = build_image('circle_blue.png')
+leftWater = build_image('things/left-tear.png')
+rightWater = build_image('things/right-tear.png')
+angerSymbol = build_image('things/anger-symbol.png')
+leftEyebrow = build_image('things/left-eye-brow.png')
+rightEyebrow = build_image('things/right-eye-brow.png')
 
 data = get_json_data('sample.json')
 getEmotion(data)
 faceInfo = getFaceInfo(data)
-drawSadness(image, secondImage, faceInfo)
+# drawSadness(image, leftWater, rightWater, faceInfo)
+drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo)
