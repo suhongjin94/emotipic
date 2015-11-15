@@ -152,7 +152,8 @@ def build_image_array(image_path):
 def build_image(image_path):
 	return Image.open(image_path)
 
-def drawAnger(background, angerSymbol, leftEyebrow, rightEyebrow, faceInfo):
+def drawAnger(background, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outfile):
+	print "anger"
 	bg_w, bg_h = background.size
 	leftOuterX = int(faceInfo.eyebrow_info['eyebrowLeftOuter']['x'])
 	leftOuterY = int(faceInfo.eyebrow_info['eyebrowLeftOuter']['y'])
@@ -183,7 +184,7 @@ def drawAnger(background, angerSymbol, leftEyebrow, rightEyebrow, faceInfo):
 	rightEyebrowOffset = (rightInnerX - rightBrow_w / 4, int(rightInnerY - rightBrow_h / 1.5))
 	background.paste(rightEyebrow, rightEyebrowOffset, mask = rightEyebrow)
 	background.paste(angerSymbol, offset, mask = angerSymbol)
-	background.save('out.png')
+	background.save(outfile)
 
 def drawContempt(image_array):
 	return image_array
@@ -200,7 +201,7 @@ def drawHappiness(image_array):
 def drawNeutral(image_array):
 	return image_array
 
-def drawSadness(background, leftWater, rightWater, faceInfo):
+def drawSadness(background, leftWater, rightWater, faceInfo, outfile):
 	bg_w, bg_h = background.size
 	leftW_w, leftW_h = leftWater.size
 	rightW_w, rightW_h = rightWater.size
@@ -223,21 +224,31 @@ def drawSadness(background, leftWater, rightWater, faceInfo):
 	# offset = ((bg_w - img_w) / 2, (bg_h - img_h) / 2)
 	background.paste(rightWater, offset, mask = rightWater)
 	background.paste(leftWater, offset2, mask = leftWater)
-	background.save('out.png')
+	background.save(outfile)
 	# write to stdout
 
 def drawSurprise(image_array):
 	return image_array
 
-image = build_image('upload.jpg')
-leftWater = build_image('things/left-tear.png')
-rightWater = build_image('things/right-tear.png')
-angerSymbol = build_image('things/anger-symbol.png')
-leftEyebrow = build_image('things/left-eye-brow.png')
-rightEyebrow = build_image('things/right-eye-brow.png')
+if __name__ == '__main__':
+	if len(sys.argv) < 4:
+		exit(1)
 
-data = get_json_data('sample.json')
-getEmotion(data)
-faceInfo = getFaceInfo(data)
-# drawSadness(image, leftWater, rightWater, faceInfo)
-drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo)
+	jsonString = sys.argv[1]
+	inputImagePath = sys.argv[2]
+	outputImagePath = sys.argv[3]
+
+	data = json.loads(jsonString)
+
+	image = build_image(inputImagePath)
+	leftWater = build_image('python/things/left-tear.png')
+	rightWater = build_image('python/things/right-tear.png')
+	angerSymbol = build_image('python/things/anger-symbol.png')
+	leftEyebrow = build_image('python/things/left-eye-brow.png')
+	rightEyebrow = build_image('python/things/right-eye-brow.png')
+
+	# data = get_json_data('sample.json')
+	getEmotion(data)
+	faceInfo = getFaceInfo(data)
+	# drawSadness(image, leftWater, rightWater, faceInfo)
+	drawAnger(image, angerSymbol, leftEyebrow, rightEyebrow, faceInfo, outputImagePath)

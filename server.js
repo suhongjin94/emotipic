@@ -68,15 +68,15 @@ app.post('/upload', function(req, response) {
 						'response': 'error'
 					});
 				} else {
-					pythonShell.run('sample.py', {
+					pythonShell.run('python/graphic.py', {
 						args: [JSON.stringify({
 								'response': {
 									face: faceBody,
 									emotion: emotionBody
 								}
 							}),
-							'upload/' + fileName,
-							'output/' + fileName
+							'uploads/' + fileName,
+							'outputs/' + fileName
 						]
 					}, function(err, result) {
 						if (err) {
@@ -92,7 +92,7 @@ app.post('/upload', function(req, response) {
 						// });
 
 						// response.end(img, 'binary')
-						response.end(url);
+						response.end(req.protocol + '://' + req.get('host') + '/outputs/' + fileName);
 					});
 				}
 			});
@@ -123,7 +123,7 @@ app.get('/upload/:file', function(req, res) {
 
 app.get('/output/:file', function(req, res) {
 	file = req.params.file;
-	var img = fs.readFileSync(__dirname + "/uploads/" + file);
+	var img = fs.readFileSync(__dirname + "/outputs/" + file);
 	res.writeHead(200, {
 		'Content-Type': 'image/jpg'
 	});
