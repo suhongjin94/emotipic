@@ -8,7 +8,8 @@ var express = require('express'),
 	port = process.env.PORT || 3000,
 	app = express();
 
-const API_KEY = "b94b9a266d7546ef91e64be1380960c9";
+const FACE_API_KEY = "3014f0d696a144d4bd875661e36057c3";
+const EMOTION_API_KEY = "b94b9a266d7546ef91e64be1380960c9";
 
 app.engine('html', ejs.renderFile);
 app.set('views', __dirname + '/views');
@@ -30,31 +31,62 @@ app.get('/', function(req, res) {
 	res.render('index.html');
 });
 
+function emotion() {
+
+}
+
+function face() {
+
+}
+
 app.post('/upload', function(req, res) {
 	var fileName = req.file.filename,
 		url = req.protocol + '://' + req.get('host') + '/upload/' + fileName;
-	console.log(fileName);
+
 	request({
 		headers: {
 			'Content-Type': 'application/json',
-			'Ocp-Apim-Subscription-Key': API_KEY
+			'Ocp-Apim-Subscription-Key': FACE_API_KEY
 		},
-		uri: 'https://api.projectoxford.ai/emotion/v1.0/recognize',
+		uri: 'https://api.projectoxford.ai/face/v0/detections?analyzesFaceLandmarks=true',
 		json: {
 			url: url
 		},
 		method: 'POST'
-	}, function(err, response, body) {
+	}, function(err, response, faceBody) {
 		if (err) {
 			res.send({
 				'response': 'error'
 			});
 		} else {
-			res.send({
-				'response': body
+			request({
+				headers: {
+					'Content-Type': 'application/json',
+					'Ocp-Apim-Subscription-Key': EMOTION_API_KEY
+				},
+				uri: 'https://api.projectoxford.ai/emotion/v1.0/recognize',
+				json: {
+					url: url
+				},
+				method: 'POST'
+			}, function(err, response, emotionBody) {
+				if (err) {
+					res.send({
+						'response': 'error'
+					});
+				} else {
+					res.send({
+						'response': {
+							face: faceBody,
+							emotion: emotionBody
+						}
+					});
+				}
 			});
 		}
 	});
+
+
 });
 
 app.post('/web-upload', function(req, res) {
@@ -76,28 +108,6 @@ app.get('/upload/:file', function(req, res) {
 		'Content-Type': 'image/jpg'
 	});
 	res.end(img, 'binary');
-});
-
-app.post('/emotipic', function(req, res) {
-	console.log(req.body.id);
-	var url = req.protocol + '://' + req.get('host') + '/upload/' + req.body.id;
-	request({
-		headers: {
-			'Content-Type': 'application/json',
-			'Ocp-Apim-Subscription-Key': API_KEY
-		},
-		uri: 'https://api.projectoxford.ai/emotion/v1.0/recognize',
-		json: {
-			url: url
-		},
-		method: 'POST'
-	}, function(err, response, body) {
-		if (err) {
-			console.log(err);
-		} else {
-			res.send(body);
-		}
-	});
 });
 
 var server = app.listen(port, function() {
