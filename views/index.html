@@ -1,0 +1,36 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css">
+</head>
+<body>
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo">EmotiPic</a>
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+			</ul>
+		</div>
+	</nav>
+	<form action="/upload" method="POST" enctype="multipart/form-data">
+		<div class="row">
+			<div class="file-field input-field col s10">
+				<div class="btn waves-effect waves-light">
+					<span>File</span>
+					<input id="fileID" name="image" type="file"/>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate" type="text">
+				</div>
+			</div>
+			<div class="input-field col s2">
+				<button class="btn waves-effect waves-light" type="submit" value="Upload Image">Upload</button>
+			</div>
+		</div>
+	</form>
+	<video autoplay id="video" style="100%; display:none"></video>
+	<canvas height="100%" id="canvas" width="100%" ></canvas>
+	<button id="capture" class="btn-floating btn-large waves-effect waves-light" onclick="captureClick()" type="button"><i class="material-icons">add</i></button>
+	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>
