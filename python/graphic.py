@@ -36,6 +36,7 @@ def getEmotion(json_data):
 	emotionLst = []
 	emotionDataLst = json_data['response']['emotion']
 	for emotionDataOuter in emotionDataLst:
+		print emotionDataOuter['faceRectangle']
 		emotionData = emotionDataOuter['scores']
 	# print emotionData
 		minVal = 0
@@ -297,7 +298,8 @@ if __name__ == '__main__':
 	faceInfoLst = getFaceInfo(data)
 	for i in range(len(emotionLst)):
 		emotion = emotionLst[i]
-		print emotion
+		# print emotion
+		print faceInfoLst[i].box_info
 		if emotion.lower() == 'happiness':
 			image = drawHappiness(image, star1, rose, faceInfoLst[i], outputImagePath)
 		elif emotion.lower() == 'anger':
