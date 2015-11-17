@@ -36,7 +36,7 @@ def getEmotion(json_data):
 	emotionLst = []
 	emotionDataLst = json_data['response']['emotion']
 	for emotionDataOuter in emotionDataLst:
-		emotionData = emotionDataOuter['Scores']
+		emotionData = emotionDataOuter['scores']
 	# print emotionData
 		minVal = 0
 		emote='happiness'
