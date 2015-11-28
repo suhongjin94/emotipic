@@ -1,0 +1,151 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Request"
+provides-nominal:
+- "C8emotipic7Request"
+provides-member:
+- ["C8emotipic7Request", ""]
+provides-dynamic-lookup:
+- "post"
+depends-top-level:
+- !private "NSMutableURLRequest"
+- "Request"
+- "NSObject"
+- !private "StringLiteralType"
+- !private "NSURL"
+- !private "NSURLConnection"
+- !private "BooleanLiteralType"
+depends-member:
+- !private ["PSs9AnyObject", "HTTPMethod"]
+- !private ["PSs9AnyObject", "NSMutableURLRequest"]
+- !private ["PSs9AnyObject", "NSURL"]
+- !private ["PSs9AnyObject", "NSURLConnection"]
+- !private ["PSs9AnyObject", "URL"]
+- ["PSs9AnyObject", "init"]
+- ["PSs9AnyObject", "post"]
+- !private ["PSs9AnyObject", "s"]
+- ["PSs9AnyObject", ""]
+- !private ["PSs11CVarArgType", "HTTPMethod"]
+- !private ["PSs11CVarArgType", "NSMutableURLRequest"]
+- !private ["PSs11CVarArgType", "NSURL"]
+- !private ["PSs11CVarArgType", "NSURLConnection"]
+- !private ["PSs11CVarArgType", "URL"]
+- ["PSs11CVarArgType", "init"]
+- ["PSs11CVarArgType", "post"]
+- !private ["PSs11CVarArgType", "s"]
+- ["PSs11CVarArgType", ""]
+- !private ["PSs28CustomDebugStringConvertible", "s"]
+- !private ["PSs23CustomStringConvertible", "HTTPMethod"]
+- !private ["PSs23CustomStringConvertible", "NSMutableURLRequest"]
+- !private ["PSs23CustomStringConvertible", "NSURL"]
+- !private ["PSs23CustomStringConvertible", "NSURLConnection"]
+- !private ["PSs23CustomStringConvertible", "URL"]
+- ["PSs23CustomStringConvertible", "init"]
+- ["PSs23CustomStringConvertible", "post"]
+- !private ["PSs23CustomStringConvertible", "s"]
+- ["PSs23CustomStringConvertible", ""]
+- !private ["PSs9Equatable", "HTTPMethod"]
+- !private ["PSs9Equatable", "NSMutableURLRequest"]
+- !private ["PSs9Equatable", "NSURL"]
+- !private ["PSs9Equatable", "NSURLConnection"]
+- !private ["PSs9Equatable", "URL"]
+- ["PSs9Equatable", "init"]
+- ["PSs9Equatable", "post"]
+- !private ["PSs9Equatable", "s"]
+- ["PSs9Equatable", ""]
+- !private ["PSs8Hashable", "HTTPMethod"]
+- !private ["PSs8Hashable", "NSMutableURLRequest"]
+- !private ["PSs8Hashable", "NSURL"]
+- !private ["PSs8Hashable", "NSURLConnection"]
+- !private ["PSs8Hashable", "URL"]
+- ["PSs8Hashable", "init"]
+- ["PSs8Hashable", "post"]
+- !private ["PSs8Hashable", "s"]
+- ["PSs8Hashable", ""]
+- !private ["PSo8NSCoding", "HTTPMethod"]
+- !private ["PSo8NSCoding", "URL"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo9NSCopying", "HTTPMethod"]
+- !private ["PSo9NSCopying", "URL"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo16NSMutableCopying", "HTTPMethod"]
+- !private ["PSo16NSMutableCopying", "URL"]
+- !private ["PSo16NSMutableCopying", "init"]
+- !private ["CSo19NSMutableURLRequest", "HTTPMethod"]
+- !private ["CSo19NSMutableURLRequest", "URL"]
+- !private ["CSo19NSMutableURLRequest", "init"]
+- !private ["CSo8NSObject", "HTTPMethod"]
+- !private ["CSo8NSObject", "NSMutableURLRequest"]
+- !private ["CSo8NSObject", "NSURL"]
+- !private ["CSo8NSObject", "NSURLConnection"]
+- !private ["CSo8NSObject", "URL"]
+- ["CSo8NSObject", "init"]
+- ["CSo8NSObject", "post"]
+- !private ["CSo8NSObject", "s"]
+- ["CSo8NSObject", ""]
+- !private ["PSo16NSObjectProtocol", "HTTPMethod"]
+- !private ["PSo16NSObjectProtocol", "NSMutableURLRequest"]
+- !private ["PSo16NSObjectProtocol", "NSURL"]
+- !private ["PSo16NSObjectProtocol", "NSURLConnection"]
+- !private ["PSo16NSObjectProtocol", "URL"]
+- ["PSo16NSObjectProtocol", "init"]
+- ["PSo16NSObjectProtocol", "post"]
+- !private ["PSo16NSObjectProtocol", "s"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSo14NSSecureCoding", "HTTPMethod"]
+- !private ["PSo14NSSecureCoding", "URL"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["CSo5NSURL", "init"]
+- !private ["CSo15NSURLConnection", "init"]
+- !private ["CSo15NSURLConnection", "s"]
+- !private ["CSo12NSURLRequest", "HTTPMethod"]
+- !private ["CSo12NSURLRequest", "URL"]
+- !private ["CSo12NSURLRequest", "init"]
+- !private ["PSs21NilLiteralConvertible", "s"]
+- !private ["Sq", "s"]
+- !private ["C8emotipic7Request", "NSMutableURLRequest"]
+- !private ["C8emotipic7Request", "NSURL"]
+- !private ["C8emotipic7Request", "NSURLConnection"]
+- ["C8emotipic7Request", "deinit"]
+- ["C8emotipic7Request", "init"]
+- ["C8emotipic7Request", "post"]
+- !private ["PSs32_FileReferenceLiteralConvertible", "init"]
+- !private ["PSs12_Reflectable", "init"]
+- !private ["PSs12_Reflectable", "s"]
+depends-nominal:
+- "PSs9AnyObject"
+- "PSs11CVarArgType"
+- !private "PSs28CustomDebugStringConvertible"
+- "PSs23CustomStringConvertible"
+- "PSs9Equatable"
+- "PSs8Hashable"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "PSo16NSMutableCopying"
+- !private "CSo19NSMutableURLRequest"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo5NSURL"
+- !private "CSo15NSURLConnection"
+- !private "CSo12NSURLRequest"
+- !private "PSs21NilLiteralConvertible"
+- !private "Sq"
+- "C8emotipic7Request"
+- !private "PSs32_FileReferenceLiteralConvertible"
+- !private "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/AVFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreMedia.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreAudio.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreData.swiftmodule"
+interface-hash: "ddbe360a2ecf06fece80153f9f348db7"

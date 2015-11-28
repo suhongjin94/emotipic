@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="emotipic" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,55 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ypT-q6-Rro">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.98198105713553285" green="1" blue="0.461319140964353" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I8n-Sr-i4u">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxE-Ce-lTb">
+                                <rect key="frame" x="241" y="549" width="120" height="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Take a Photo!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePhotoAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="eKI-Lh-LZ6"/>
+                                    <action selector="takePhotoButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="cB5-z2-ogh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YD-oN-68G">
+                                <rect key="frame" x="534" y="551" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ypT-q6-Rro" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="6W9-Fd-R0P"/>
+                            <constraint firstItem="wxE-Ce-lTb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7lU-s5-ZJj"/>
+                            <constraint firstItem="I8n-Sr-i4u" firstAttribute="height" secondItem="ypT-q6-Rro" secondAttribute="height" id="CE8-1L-o3b"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9YD-oN-68G" secondAttribute="bottom" constant="19" id="I0a-Ip-TR8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9YD-oN-68G" secondAttribute="trailing" id="Qeu-k4-XTE"/>
+                            <constraint firstItem="I8n-Sr-i4u" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="h1f-QG-I4o"/>
+                            <constraint firstItem="ypT-q6-Rro" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="oCC-iZ-P0o"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wxE-Ce-lTb" secondAttribute="bottom" constant="20" id="tUC-y3-ABw"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="cameraView" destination="ypT-q6-Rro" id="g10-Ti-dNF"/>
+                        <outlet property="sendButton" destination="9YD-oN-68G" id="ViQ-DD-SRU"/>
+                        <outlet property="takePhotoButton" destination="wxE-Ce-lTb" id="hXg-ee-4kl"/>
+                        <outlet property="tempImageView" destination="I8n-Sr-i4u" id="qki-xA-vSf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="138" y="462"/>
         </scene>
     </scenes>
 </document>

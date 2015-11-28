@@ -1,0 +1,6 @@
+version: "Apple Swift version 2.1 (swiftlang-700.1.101.6 clang-700.1.76)"
+options: "6e6a6e8e191e9b93de73d88b5c6b5da4"
+build_time: [501892399, 386340000]
+inputs:
+  "/Users/GC/Desktop/emotipic/emotipic/ViewController.swift": [501892395, 0]
+  "/Users/GC/Desktop/emotipic/emotipic/AppDelegate.swift": [501849622, 0]
